@@ -28,9 +28,12 @@ This Git repo is an Eclipse Java project (you can clone the repo and open the ro
 
 ## Prebuilt releases
 
-While the source code for this program is mirrored on both GitLab and GitHub, releases are only published on GitHub (because GitHub's release system is easier to use and provides free hosting for the built files.) You can browse and download releases here: [https://github.com/nerdonthestreet/OcIrcBridge/releases](https://github.com/nerdonthestreet/OcIrcBridge/releases)
+Releases are periodically tagged when the bot is in a stable state and there is no pending work to be done. For each release, a prebuilt `.jar` file and a matching version of the configuration file are provided.
 
-In the event that we have issues with GitHub's release system, I may begin offering builds hosted on NOTS infrastructure as well. Contact me at [jacob@nerdonthestreet.com](mailto:jacob@nerdonthestreet.com) if you see a need for this.
+- Download fron GitLab: [https://gitlab.com/nerdonthestreet/OcIrcBridge/-/releases](https://gitlab.com/nerdonthestreet/OcIrcBridge/-/releases)
+- Download from GitHub: [https://github.com/nerdonthestreet/OcIrcBridge/releases](https://github.com/nerdonthestreet/OcIrcBridge/releases)
+
+The versioning scheme uses simple build numbers (the number is incremented by 1 every time a build is made.) Gaps between release numbers simply mean that multiple builds were made in the process of updating and testing the bot.
 
 ## Supporting development
 
