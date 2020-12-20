@@ -11,6 +11,7 @@ public class ConfigLoader {
 	static String ircBotName;
 	static String ircBotPassword;
 	static String ircServer;
+	static int ircPort;
 	static String ircChannel;
 	static String composrWebsite;
 	static String composrWebUsername;
@@ -33,6 +34,7 @@ public class ConfigLoader {
 		ConfigLoader.ircBotName = prop.getProperty("ircBotName");
 		ConfigLoader.ircBotPassword = prop.getProperty("ircBotPassword");
 		ConfigLoader.ircServer = prop.getProperty("ircServer");
+		ConfigLoader.ircPort = Integer.parseInt(prop.getProperty("ircPort"));
 		ConfigLoader.ircChannel = prop.getProperty("ircChannel");
 		ConfigLoader.composrWebsite = prop.getProperty("composrWebsite");
 		ConfigLoader.composrWebUsername = prop.getProperty("composrWebUsername");

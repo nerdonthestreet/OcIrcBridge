@@ -2,6 +2,8 @@ package com.nerdonthestreet.ocircbridge.ocircbridge;
 
 import java.io.IOException;
 
+import javax.net.ssl.SSLSocketFactory;
+
 import org.pircbotx.Configuration;
 import org.pircbotx.MultiBotManager;
 import org.pircbotx.PircBotX;
@@ -39,7 +41,8 @@ public class App extends ListenerAdapter {
         // Set up our PircBotX bot
         final Configuration ircConfig = new Configuration.Builder()
                 .setName(ConfigLoader.ircBotName) // Sets the nick of our bot using the config value we loaded in.
-                .addServer(ConfigLoader.ircServer) // Sets the IRC server our bot will connect to from the config.
+                .addServer(ConfigLoader.ircServer, ConfigLoader.ircPort) // Sets the IRC server our bot will connect to from the config.
+                .setSocketFactory(SSLSocketFactory.getDefault()) // Connect with SSL/TLS, hardcoded until requested otherwise.
                 .addAutoJoinChannel(ConfigLoader.ircChannel) // Sets the IRC channel to join from the config.
                 .setListenerManager(listenerManager)
                 .setAutoReconnect(true)
