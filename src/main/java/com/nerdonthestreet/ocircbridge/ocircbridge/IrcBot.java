@@ -40,7 +40,7 @@ public class IrcBot extends ListenerAdapter {
 	public void onMessage(MessageEvent event) throws Exception {
 		
 		// Store the message text in a string.
-		String messageToSend = event.getMessage();
+		String messageToSend = "[" + event.getUser().getNick() + "] " + event.getMessage();
 		System.out.println("Sending message from IRC to Composr: " + messageToSend);
 		
 		// Check that we are logged in, re-login if not.
