@@ -9,6 +9,7 @@ public class ConfigLoader {
 	
 	// Initialize attributes (global variables) we will use to store config values.
 	static String ircBotName;
+	static String ircBotPassword;
 	static String ircServer;
 	static String ircChannel;
 	static String composrWebsite;
@@ -29,6 +30,7 @@ public class ConfigLoader {
 		
 		// Set our attributes (global variables).
 		ConfigLoader.ircBotName = prop.getProperty("ircBotName");
+		ConfigLoader.ircBotPassword = prop.getProperty("ircBotPassword");
 		ConfigLoader.ircServer = prop.getProperty("ircServer");
 		ConfigLoader.ircChannel = prop.getProperty("ircChannel");
 		ConfigLoader.composrWebsite = prop.getProperty("composrWebsite");

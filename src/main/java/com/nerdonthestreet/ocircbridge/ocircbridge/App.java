@@ -42,7 +42,9 @@ public class App extends ListenerAdapter {
                 .addServer(ConfigLoader.ircServer) // Sets the IRC server our bot will connect to from the config.
                 .addAutoJoinChannel(ConfigLoader.ircChannel) // Sets the IRC channel to join from the config.
                 .setListenerManager(listenerManager)
-                .setAutoReconnect(false)
+                .setAutoReconnect(true)
+                .setAutoReconnectDelay(10000)
+                .setAutoReconnectAttempts(10800) // Attempt to reconnect for 30 minutes.
                 .buildConfiguration();
         final PircBotX ircBot = new PircBotX(ircConfig);
         

@@ -7,13 +7,30 @@ import javax.net.ssl.HttpsURLConnection;
 
 import org.pircbotx.PircBotX;
 import org.pircbotx.hooks.ListenerAdapter;
+import org.pircbotx.hooks.events.ConnectEvent;
+import org.pircbotx.hooks.events.DisconnectEvent;
 import org.pircbotx.hooks.events.JoinEvent;
 import org.pircbotx.hooks.events.MessageEvent;
 
 public class IrcBot extends ListenerAdapter {
 	public static PircBotX ircBot2;
 	
-	// This code is called when a user joins IRC (should rarely happen, as the IRC server isn't public yet.)
+	// This code is called when we connect to IRC.
+	public void onConnect(ConnectEvent event) throws Exception {
+		if (!ConfigLoader.ircBotPassword.isEmpty()) {
+			App.ircBot2.send().message("NickServ", "identify " + ConfigLoader.ircBotPassword);
+			System.out.println("Connected to IRC and sent authentication request to NickServ.");
+		} else {
+			System.out.println("Connected to IRC (no NickServ password configured.)");
+		}
+	}
+	
+	// This code is called when we're disconnected from IRC.
+	public void onDisconnect(DisconnectEvent event) throws Exception {
+		System.out.println("Disconnected from IRC. Attempting to reconnect every 10 seconds for 30 minutes...");
+	}
+	
+	// This code is called when a user joins IRC.
 	public void onJoin(JoinEvent event) throws Exception {
 		// Keep our ircBot2 object fresh (should run once when we join, at the least.)
 		ircBot2 = event.getBot();
@@ -66,7 +83,6 @@ public class IrcBot extends ListenerAdapter {
 		
 		// Keep our IrcBot2 object fresh (probably not necessary.)
 		ircBot2 = event.getBot();
-		
 	}
 	
 }
