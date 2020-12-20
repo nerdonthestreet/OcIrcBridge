@@ -29,7 +29,7 @@ public class ComposrMessageListener {
     		*/
     		
 			// Get only the most recent chat message, so we know what our startingId is.
-			PreparedStatement getMostRecentChatMessage = SqlConnection.prepareStatement("SELECT * FROM " + ConfigLoader.composrChatTable + " WHERE room_id='" + ConfigLoader.composrRoomId + "' ORDER BY id DESC LIMIT 1");
+			PreparedStatement getMostRecentChatMessage = SqlConnection.prepareStatement("SELECT * FROM " + ConfigLoader.composrChatTable + " WHERE room_id='" + ConfigLoader.composrRoomId + "' ORDER BY id DESC LIMIT 1", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet mostRecentChatMessage = getMostRecentChatMessage.executeQuery();
     		
     		// Set our starting ID; any messages past this one will be sent to IRC after bot is started.
@@ -51,7 +51,7 @@ public class ComposrMessageListener {
     			if (App.ircBot2.getState().toString() == "CONNECTED") {
     			
     				// Get all chat messages from the correct chat room with an ID higher than the ID we started with.
-    				PreparedStatement getNewChatMessages = SqlConnection.prepareStatement("SELECT * FROM cms_chat_messages WHERE room_id='" + ConfigLoader.composrRoomId + "' AND id>" + startingId + " ORDER BY id ASC");
+    				PreparedStatement getNewChatMessages = SqlConnection.prepareStatement("SELECT * FROM cms_chat_messages WHERE room_id='" + ConfigLoader.composrRoomId + "' AND id>" + startingId + " ORDER BY id ASC", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
     				ResultSet newChatMessages = getNewChatMessages.executeQuery();
     					
     				// Forward each new message one-by-one. 
@@ -64,7 +64,7 @@ public class ComposrMessageListener {
     					if (sendingUserId != 205) {
     						
     						// Get the message sender, look up their username from their ID
-    						PreparedStatement getWebsiteMembers = SqlConnection.prepareStatement("SELECT * FROM cms_f_members WHERE id = " + sendingUserId); // Set up SQL call
+    						PreparedStatement getWebsiteMembers = SqlConnection.prepareStatement("SELECT * FROM cms_f_members WHERE id = " + sendingUserId, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE); // Set up SQL call
     						ResultSet websiteMembers = getWebsiteMembers.executeQuery(); // Execute SQL, should receive one row with matching ID
     						websiteMembers.first(); // Move the pointer to the first (and only) result
     						String messageSender = websiteMembers.getString(2); // Get username & convert to string
