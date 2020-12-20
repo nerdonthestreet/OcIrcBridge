@@ -61,7 +61,7 @@ public class ComposrMessageListener {
     					int sendingUserId = newChatMessages.getInt(5);
     					
     					// Only forward the message if it did not come from us
-    					if (sendingUserId != 205) {
+    					if (sendingUserId != ConfigLoader.composrWebId) {
     						
     						// Get the message sender, look up their username from their ID
     						PreparedStatement getWebsiteMembers = SqlConnection.prepareStatement("SELECT * FROM cms_f_members WHERE id = " + sendingUserId, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE); // Set up SQL call

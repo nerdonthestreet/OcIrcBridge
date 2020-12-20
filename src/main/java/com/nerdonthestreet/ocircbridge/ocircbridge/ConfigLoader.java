@@ -15,6 +15,7 @@ public class ConfigLoader {
 	static String composrWebsite;
 	static String composrWebUsername;
 	static String composrWebPassword;
+	static int composrWebId;
 	static String composrSqlServer;
 	static String composrSqlUsername;
 	static String composrSqlPassword;
@@ -36,6 +37,7 @@ public class ConfigLoader {
 		ConfigLoader.composrWebsite = prop.getProperty("composrWebsite");
 		ConfigLoader.composrWebUsername = prop.getProperty("composrWebUsername");
 		ConfigLoader.composrWebPassword = prop.getProperty("composrWebPassword");
+		ConfigLoader.composrWebId = Integer.parseInt(prop.getProperty("composrWebId"));
 		ConfigLoader.composrSqlServer = prop.getProperty("composrSqlServer");
 		ConfigLoader.composrSqlUsername = prop.getProperty("composrSqlUsername");
 		ConfigLoader.composrSqlPassword = prop.getProperty("composrSqlPassword");
