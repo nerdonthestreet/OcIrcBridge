@@ -73,11 +73,11 @@ public class ComposrMessageListener {
     						String messageFromWebsite = newChatMessages.getString(7);
     						System.out.print("Got new message #");
     						System.out.print(newChatMessages.getInt(1));
-    						System.out.print(" from <" + messageSender + ">: ");
+    						System.out.print(" from [" + messageSender + "]: ");
     						System.out.print(messageFromWebsite + "\n");
     						
     						// Format message for IRC
-    						String messageToIrc = "<" + messageSender + "> " + messageFromWebsite;
+    						String messageToIrc = "[" + messageSender + "] " + messageFromWebsite;
     						
     						// Send message to IRC
     						App.ircBot2.send().message(ConfigLoader.ircChannel, messageToIrc);
